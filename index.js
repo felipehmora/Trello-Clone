@@ -3,14 +3,15 @@ const createCardInput = document.getElementById("card-input");
 const cardInput = document.getElementById("card-input");
 const addBtn = document.getElementById("add-btn");
 const addTask = document.getElementById("add-task");
-const newBoard = document.createElement("div");
 
 addBtn.addEventListener("click", () => {
+  const newBoard = document.createElement("div");
+
   let title = createCardInput.value;
 
   newBoard.className = "card";
 
-  newBoard.innerHTML = `
+  newBoard.innerHTML += `
         <h2>${title}</h2>
         <input type="text" placeholder="Add Task" id="task-input" />
         <button id="add-task">+</button>
