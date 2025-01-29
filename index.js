@@ -1,3 +1,6 @@
+// Default SortableJS
+import Sortable from "sortablejs";
+
 // Elementos del DOM
 const mainContainer = document.querySelector(".main-container");
 const createCardInput = document.getElementById("card-input");
@@ -9,11 +12,12 @@ const createBoard = (title) => {
   const boardId = `board-${Math.random().toString(36).substr(2, 9)}`;
 
   newBoard.className = "card";
+  newBoard.draggable = true;
   newBoard.id = boardId;
 
   newBoard.innerHTML = `
         <h2>${title}</h2>
-        <div class="task-container">
+        <div class="task-container" id="items">
           <input type="text" placeholder="Add Task" class="task-input" />
           <button class="add-task-button">+</button>
         </div>
@@ -23,6 +27,22 @@ const createBoard = (title) => {
   // Añadir lógica para agregar tareas
   const addTaskButton = newBoard.querySelector(".add-task-button");
   addTaskButton.addEventListener("click", () => addTask(newBoard));
+
+  // Inicializar SortableJS en la lista de tareas
+  const tasksList = newBoard.querySelector(".tasks-list");
+  Sortable.create(tasksList, {
+    group: "tasks",
+    animation: 150,
+  });
+
+  // Inicializar SortableJS en el contenedor de tareas
+  const taskContainer = newBoard.querySelector("#items");
+  Sortable.create(taskContainer, {
+    group: "tasks",
+    animation: 150,
+    filter: ".task-input, .add-task-button",
+    preventOnFilter: false,
+  });
 
   return newBoard;
 };
@@ -44,6 +64,14 @@ const addTask = (board) => {
 
   tasksList.appendChild(taskElement);
   taskInput.value = ""; // Limpiar el input después de agregar la tarea
+
+  // Re-inicializar SortableJS en todas las listas de tareas para que funcione con la nueva tarea
+  document.querySelectorAll(".tasks-list").forEach((tasksList) => {
+    Sortable.create(tasksList, {
+      group: "tasks",
+      animation: 150,
+    });
+  });
 };
 
 // Evento para agregar un nuevo tablero
