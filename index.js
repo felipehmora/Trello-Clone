@@ -10,6 +10,7 @@ const addBtn = document.getElementById("add-btn");
 const createBoard = (title) => {
   const newBoard = document.createElement("div");
   const boardId = `board-${Math.random().toString(36).substr(2, 9)}`;
+  const taskContainerId = `tasks-${Math.random().toString(36).substr(2, 9)}`;
 
   newBoard.className = "card";
   newBoard.draggable = true;
@@ -17,11 +18,11 @@ const createBoard = (title) => {
 
   newBoard.innerHTML = `
         <h2>${title}</h2>
-        <div class="task-container" id="items">
+        <div class="task-container" id="${taskContainerId}">
           <input type="text" placeholder="Add Task" class="task-input" />
           <button class="add-task-button">+</button>
         </div>
-        <div class="tasks-list"></div>
+        <div class="tasks-list" id="tasks-list-${boardId}"></div>
   `;
 
   // Añadir lógica para agregar tareas
@@ -29,19 +30,10 @@ const createBoard = (title) => {
   addTaskButton.addEventListener("click", () => addTask(newBoard));
 
   // Inicializar SortableJS en la lista de tareas
-  const tasksList = newBoard.querySelector(".tasks-list");
+  const tasksList = newBoard.querySelector(`#tasks-list-${boardId}`);
   Sortable.create(tasksList, {
-    group: "tasks",
+    group: "shared",
     animation: 150,
-  });
-
-  // Inicializar SortableJS en el contenedor de tareas
-  const taskContainer = newBoard.querySelector("#items");
-  Sortable.create(taskContainer, {
-    group: "tasks",
-    animation: 150,
-    filter: ".task-input, .add-task-button",
-    preventOnFilter: false,
   });
 
   return newBoard;
@@ -64,26 +56,21 @@ const addTask = (board) => {
 
   tasksList.appendChild(taskElement);
   taskInput.value = ""; // Limpiar el input después de agregar la tarea
-
-  // Re-inicializar SortableJS en todas las listas de tareas para que funcione con la nueva tarea
-  document.querySelectorAll(".tasks-list").forEach((tasksList) => {
-    Sortable.create(tasksList, {
-      group: "tasks",
-      animation: 150,
-    });
-  });
 };
 
 // Evento para agregar un nuevo tablero
 addBtn.addEventListener("click", () => {
-  const title = createCardInput.value.trim();
-
-  if (title === "") {
+  const boardTitle = createCardInput.value.trim();
+  if (boardTitle === "") {
     alert("El título del tablero no puede estar vacío.");
     return;
   }
-
-  const newBoard = createBoard(title);
+  const newBoard = createBoard(boardTitle);
   mainContainer.appendChild(newBoard);
   createCardInput.value = ""; // Limpiar el input después de agregar el tablero
+});
+
+// Inicializar SortableJS en el contenedor principal para permitir mover tableros
+Sortable.create(mainContainer, {
+  animation: 150,
 });
