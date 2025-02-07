@@ -1,5 +1,5 @@
-// Default SortableJS
 import Sortable from "sortablejs";
+import Swal from "sweetalert2";
 
 // Elementos del DOM
 const mainContainer = document.querySelector(".main-container");
@@ -57,6 +57,16 @@ const addTask = (board) => {
       name: "tasks",
       pull: true, // To clone: set pull to 'clone'
     },
+  });
+
+  taskElement.addEventListener("click", () => {
+    Swal.fire({
+      title: "Editar",
+      confirmButtonColor: "#0079bf",
+      input: "text",
+      inputPlaceholder: `${taskElement.textContent}`,
+      confirmButtonText: "Cool",
+    });
   });
 };
 
