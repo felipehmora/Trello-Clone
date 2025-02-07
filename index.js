@@ -55,7 +55,7 @@ const addTask = (board) => {
   Sortable.create(tasksList, {
     group: {
       name: "tasks",
-      pull: true,
+      pull: true, // To clone: set pull to 'clone'
     },
   });
 };
