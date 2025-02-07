@@ -29,12 +29,7 @@ const createBoard = (title) => {
   const addTaskButton = newBoard.querySelector(".add-task-button");
   addTaskButton.addEventListener("click", () => addTask(newBoard));
 
-  // Inicializar SortableJS en la lista de tareas
   const tasksList = newBoard.querySelector(`#tasks-list-${boardId}`);
-  Sortable.create(tasksList, {
-    group: "shared",
-    animation: 150,
-  });
 
   return newBoard;
 };
@@ -56,6 +51,13 @@ const addTask = (board) => {
 
   tasksList.appendChild(taskElement);
   taskInput.value = ""; // Limpiar el input después de agregar la tarea
+
+  Sortable.create(tasksList, {
+    group: {
+      name: "tasks",
+      pull: true,
+    },
+  });
 };
 
 // Evento para agregar un nuevo tablero
@@ -72,5 +74,8 @@ addBtn.addEventListener("click", () => {
 
 // Inicializar SortableJS en el contenedor principal para permitir mover tableros
 Sortable.create(mainContainer, {
-  animation: 150,
+  group: {
+    name: "shared",
+    pull: true, // To clone: set pull to 'clone'
+  },
 });
