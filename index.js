@@ -29,8 +29,6 @@ const createBoard = (title) => {
   const addTaskButton = newBoard.querySelector(".add-task-button");
   addTaskButton.addEventListener("click", () => addTask(newBoard));
 
-  const tasksList = newBoard.querySelector(`#tasks-list-${boardId}`);
-
   return newBoard;
 };
 
@@ -55,7 +53,7 @@ const addTask = (board) => {
   Sortable.create(tasksList, {
     group: {
       name: "tasks",
-      pull: true, // To clone: set pull to 'clone'
+      pull: true,
     },
   });
 
@@ -65,7 +63,25 @@ const addTask = (board) => {
       confirmButtonColor: "#0079bf",
       input: "text",
       inputPlaceholder: `${taskElement.textContent}`,
-      confirmButtonText: "Cool",
+      confirmButtonText: "Guardar",
+      allowOutsideClick: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "bottom-end",
+          showConfirmButton: false,
+          timer: 2000,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          },
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Se editó la tarea correctamente",
+        });
+      }
     });
   });
 };
@@ -74,7 +90,13 @@ const addTask = (board) => {
 addBtn.addEventListener("click", () => {
   const boardTitle = createCardInput.value.trim();
   if (boardTitle === "") {
-    alert("El título del tablero no puede estar vacío.");
+    Swal.fire({
+      title: "El título del tablero no puede estar vacío",
+      icon: "error",
+      confirmButtonColor: "#cf513d",
+      confirmButtonText: "Entendido",
+      allowOutsideClick: false,
+    });
     return;
   }
   const newBoard = createBoard(boardTitle);
@@ -86,6 +108,6 @@ addBtn.addEventListener("click", () => {
 Sortable.create(mainContainer, {
   group: {
     name: "shared",
-    pull: true, // To clone: set pull to 'clone'
+    pull: true,
   },
 });
