@@ -29,6 +29,9 @@ const createBoard = (title) => {
   const addTaskButton = newBoard.querySelector(".add-task-button");
   addTaskButton.addEventListener("click", () => addTask(newBoard));
 
+  // Guardar el nuevo tablero en el local storage
+  localStorage.setItem(boardId, newBoard.outerHTML);
+
   return newBoard;
 };
 
@@ -39,7 +42,13 @@ const addTask = (board) => {
   const inputValue = taskInput.value.trim();
 
   if (inputValue === "") {
-    alert("El campo de tarea no puede estar vacío.");
+    Swal.fire({
+      title: "El campo tarea no puede estar vacío",
+      icon: "error",
+      confirmButtonColor: "#cf513d",
+      confirmButtonText: "Entendido",
+      allowOutsideClick: false,
+    });
     return;
   }
 
@@ -64,6 +73,8 @@ const addTask = (board) => {
       input: "text",
       inputPlaceholder: `${taskElement.textContent}`,
       confirmButtonText: "Guardar",
+      denyButton: true,
+      showCancelButton: true,
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
@@ -110,4 +121,17 @@ Sortable.create(mainContainer, {
     name: "shared",
     pull: true,
   },
+});
+
+// Cargar tableros desde el local storage al iniciar la aplicación
+window.addEventListener("load", () => {
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key.startsWith("board-")) {
+      const boardHTML = localStorage.getItem(key);
+      const boardElement = document.createElement("div");
+      boardElement.innerHTML = boardHTML;
+      mainContainer.appendChild(boardElement.firstChild);
+    }
+  }
 });
