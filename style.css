@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color: #213547;
@@ -12,6 +12,7 @@
 
 h1 {
   text-align: center;
+  font-weight: 700; /* Peso más alto para encabezados */
 }
 
 .main-container {
@@ -33,6 +34,13 @@ input {
   border: 2px solid #dfe1e6;
   border-radius: 4px;
   font-size: 14px;
+  font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400; /* Peso normal para inputs */
+}
+
+input::placeholder {
+  font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 300; /* Peso más ligero para placeholders */
 }
 
 .add-button,
@@ -43,6 +51,8 @@ input {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 600; /* Peso medio para botones */
 }
 
 .added-input {
@@ -70,6 +80,8 @@ input {
   font-weight: bold;
   cursor: pointer;
   color: #455570;
+  font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 600; /* Peso medio para botones */
 }
 
 .task {
@@ -78,6 +90,7 @@ input {
   margin-left: 5%;
   font-size: 20px;
   background-color: white;
+  font-weight: 400; /* Peso normal para tareas */
 }
 
 .input-text {
@@ -90,4 +103,20 @@ input {
   width: 270px;
   text-align: left;
   height: fit-content;
+  font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400; /* Peso normal para texto de entrada */
+}
+
+.input-text:hover {
+  border-style: solid;
+  border-color: #0079bf;
+  border-width: 2px;
+}
+
+.swal2-confirm,
+.swal2-cancel,
+.swal2-deny {
+  font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 18px !important;
+  font-weight: 600; /* Peso medio para botones de modales */
 }

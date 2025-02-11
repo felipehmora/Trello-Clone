@@ -61,7 +61,7 @@ const addTask = (board) => {
 
   Sortable.create(tasksList, {
     group: {
-      name: "tasks",
+      name: "nested",
       pull: true,
     },
   });
@@ -121,17 +121,4 @@ Sortable.create(mainContainer, {
     name: "shared",
     pull: true,
   },
-});
-
-// Cargar tableros desde el local storage al iniciar la aplicación
-window.addEventListener("load", () => {
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    if (key.startsWith("board-")) {
-      const boardHTML = localStorage.getItem(key);
-      const boardElement = document.createElement("div");
-      boardElement.innerHTML = boardHTML;
-      mainContainer.appendChild(boardElement.firstChild);
-    }
-  }
 });
