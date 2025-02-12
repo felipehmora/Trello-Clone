@@ -109,6 +109,22 @@ const addTask = (board) => {
   deleteButton.addEventListener("click", (e) => {
     e.stopPropagation(); // Evitar que se dispare el evento de editar tarea
     tasksList.removeChild(taskElement);
+
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "bottom-end",
+      showConfirmButton: false,
+      isConfirmed: true,
+      timer: 2000,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      },
+    });
+    Toast.fire({
+      icon: "warning",
+      title: "Se eliminó la tarea correctamente",
+    });
   });
 };
 
