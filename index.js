@@ -53,10 +53,15 @@ const addTask = (board) => {
   }
 
   const taskElement = document.createElement("p");
+  const deleteButton = document.createElement("button");
+  taskElement.textContent = inputValue;
+  deleteButton.textContent = "x";
+  deleteButton.className = "delete-card";
   taskElement.className = "input-text";
   taskElement.id = "task";
-  taskElement.textContent = inputValue;
 
+  // Añadir el botón de eliminación al elemento de la tarea
+  taskElement.appendChild(deleteButton);
   tasksList.appendChild(taskElement);
   taskInput.value = ""; // Limpiar el input después de agregar la tarea
 

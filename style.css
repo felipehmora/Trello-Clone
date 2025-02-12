@@ -120,3 +120,28 @@ input::placeholder {
   font-size: 18px !important;
   font-weight: 600; /* Peso medio para botones de modales */
 }
+
+.delete-card {
+  position: relative;
+  right: 5px;
+  left: 90%;
+  background: #eb5a46;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.card:hover .delete-card {
+  opacity: 1;
+}
+
+.delete-card:hover {
+  background: #cf513d;
+}
