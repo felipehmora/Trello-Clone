@@ -54,6 +54,7 @@ const addTask = (board) => {
 
   const taskElement = document.createElement("p");
   taskElement.className = "input-text";
+  taskElement.id = "task";
   taskElement.textContent = inputValue;
 
   tasksList.appendChild(taskElement);
@@ -71,17 +72,19 @@ const addTask = (board) => {
       title: "Editar",
       confirmButtonColor: "#0079bf",
       input: "text",
-      inputPlaceholder: `${taskElement.textContent}`,
+      inputValue: `${taskElement.textContent}`,
       confirmButtonText: "Guardar",
       denyButton: true,
       showCancelButton: true,
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
+        taskElement.textContent = result.value;
         const Toast = Swal.mixin({
           toast: true,
           position: "bottom-end",
           showConfirmButton: false,
+          isConfirmed: true,
           timer: 2000,
           didOpen: (toast) => {
             toast.onmouseenter = Swal.stopTimer;
