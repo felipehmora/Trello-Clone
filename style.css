@@ -141,7 +141,7 @@ input::placeholder {
   transition: opacity 0.2s ease;
 }
 
-.card:hover .delete-card {
+p:hover .delete-card {
   opacity: 1;
 }
 

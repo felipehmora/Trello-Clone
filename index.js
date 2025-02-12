@@ -53,12 +53,10 @@ const addTask = (board) => {
   }
 
   const taskElement = document.createElement("p");
-
   const deleteButton = document.createElement("button");
   taskElement.textContent = inputValue;
   deleteButton.innerHTML = "<img src='assets/delete-svgrepo-com.svg' />";
   deleteButton.className = "delete-card";
-
   taskElement.className = "input-text";
   taskElement.id = "task";
 
@@ -87,7 +85,7 @@ const addTask = (board) => {
     }).then((result) => {
       if (result.isConfirmed) {
         taskElement.textContent = result.value;
-        taskElement.appendChild(deleteButton);
+        taskElement.appendChild(deleteButton); // Volver a añadir el botón de eliminar
         const Toast = Swal.mixin({
           toast: true,
           position: "bottom-end",
@@ -105,6 +103,12 @@ const addTask = (board) => {
         });
       }
     });
+  });
+
+  // Añadir evento para eliminar la tarea
+  deleteButton.addEventListener("click", (e) => {
+    e.stopPropagation(); // Evitar que se dispare el evento de editar tarea
+    tasksList.removeChild(taskElement);
   });
 };
 
