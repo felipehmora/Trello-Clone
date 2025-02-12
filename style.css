@@ -105,6 +105,7 @@ input::placeholder {
   height: fit-content;
   font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400; /* Peso normal para texto de entrada */
+  position: relative; /* Añadir esta línea */
 }
 
 .input-text:hover {
@@ -122,15 +123,17 @@ input::placeholder {
 }
 
 .delete-card {
-  position: relative;
-  right: 5px;
-  left: 90%;
+  position: absolute; /* Cambiar a posición absoluta */
+  top: 50%; /* Centrar verticalmente */
+  right: 5px; /* Ajustar la distancia desde el borde derecho */
+  transform: translateY(-50%); /* Centrar verticalmente */
   background: #eb5a46;
   color: white;
   border: none;
   border-radius: 3px;
   width: 24px;
   height: 24px;
+  display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;

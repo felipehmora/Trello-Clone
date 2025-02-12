@@ -53,10 +53,12 @@ const addTask = (board) => {
   }
 
   const taskElement = document.createElement("p");
+
   const deleteButton = document.createElement("button");
   taskElement.textContent = inputValue;
-  deleteButton.textContent = "x";
+  deleteButton.innerHTML = "<img src='assets/delete-svgrepo-com.svg' />";
   deleteButton.className = "delete-card";
+
   taskElement.className = "input-text";
   taskElement.id = "task";
 
@@ -85,6 +87,7 @@ const addTask = (board) => {
     }).then((result) => {
       if (result.isConfirmed) {
         taskElement.textContent = result.value;
+        taskElement.appendChild(deleteButton);
         const Toast = Swal.mixin({
           toast: true,
           position: "bottom-end",
