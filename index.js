@@ -5,6 +5,7 @@ import Swal from "sweetalert2";
 const mainContainer = document.querySelector(".main-container");
 const createCardInput = document.getElementById("card-input");
 const addBtn = document.getElementById("add-btn");
+const iaBtn = document.getElementById("ia-btn");
 
 // Función para crear un nuevo tablero
 const createBoard = (title) => {
@@ -28,9 +29,6 @@ const createBoard = (title) => {
   // Añadir lógica para agregar tareas
   const addTaskButton = newBoard.querySelector(".add-task-button");
   addTaskButton.addEventListener("click", () => addTask(newBoard));
-
-  // Guardar el nuevo tablero en el local storage
-  localStorage.setItem(boardId, newBoard.outerHTML);
 
   return newBoard;
 };
@@ -152,4 +150,16 @@ Sortable.create(mainContainer, {
     name: "shared",
     pull: true,
   },
+});
+
+iaBtn.addEventListener("click", () => {
+  Swal.fire({
+    title: "¡Hola! Soy el asistente virtual de Trello",
+    text: "¿En qué puedo ayudarte?",
+    input: "text",
+    icon: "question",
+    confirmButtonColor: "#0079bf",
+    confirmButtonText: "Entendido",
+    allowOutsideClick: false,
+  });
 });
