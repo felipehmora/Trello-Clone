@@ -149,6 +149,7 @@ Sortable.create(mainContainer, {
   group: {
     name: "shared",
     pull: true,
+    multidrag: true,
   },
 });
 

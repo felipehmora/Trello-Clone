@@ -17,7 +17,10 @@ h1 {
 
 .main-container {
   display: flex;
+  width: 100%;
   gap: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .card {
@@ -163,4 +166,22 @@ p:hover .delete-card {
   bottom: 20px; /* Ajustar la distancia desde el borde inferior */
   left: 20px; /* Ajustar la distancia desde el borde izquierdo */
   cursor: pointer;
+}
+
+nav {
+  margin-bottom: 3%;
+  padding: 10px 0; /* Espaciado vertical */
+  border-bottom: #455570;
+  border-bottom-style: solid;
+  border-width: 1px;
+}
+
+ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+li {
+  justify-content: center; /* Centrar el contenido horizontalmente */
 }
