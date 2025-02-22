@@ -184,4 +184,27 @@ ul {
 
 li {
   justify-content: center; /* Centrar el contenido horizontalmente */
+  cursor: pointer;
+}
+
+select {
+  padding: 8px;
+  font-size: 14px;
+  font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400; /* Peso normal para selects */
+  background-color: transparent; /* Quitar el color de fondo */
+  color: #213547;
+  cursor: pointer;
+  border-style: none;
+}
+
+select:hover {
+  background-color: #dfe1e6;
+}
+
+option {
+  font-family: "Sen", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-weight: 400; /* Peso normal para opciones */
+  color: #213547;
+  border-style: none;
 }

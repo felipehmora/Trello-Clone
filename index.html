@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trello Clone</title>
+
     <link
       href="https://fonts.googleapis.com/css2?family=Sen:wght@400;700&display=swap"
       rel="stylesheet"
@@ -20,9 +21,27 @@
             srcset=""
           />
         </li>
-        <li>Workspaces</li>
-        <li>Recent</li>
-        <li>More</li>
+        <li>
+          <select name="state">
+            <option value="" selected disabled hidden>Workspace</option>
+            ...
+            <option value="WY">Wyoming</option>
+          </select>
+        </li>
+        <li>
+          <select name="state">
+            <option value="" selected disabled hidden>Recents</option>
+            ...
+            <option value="WY">Wyoming</option>
+          </select>
+        </li>
+        <li>
+          <select name="state">
+            <option value="" selected disabled hidden>More</option>
+            ...
+            <option value="WY">Wyoming</option>
+          </select>
+        </li>
       </ul>
     </nav>
     <div class="main-container">
